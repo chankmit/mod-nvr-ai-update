@@ -34,7 +34,7 @@ cam_03 = 'rtsp://admin:Things22@192.168.1.108:554/cam/realmonitor?channel=1&subt
 cam_04 = 'rtsp://admin:Things22@192.168.1.108:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif'
 
 Object_classes = config['DEFAULT']['object_classes']
-Object_detector = OBJ_DETECTION('weights/yolov5n.pt', Object_classes)
+Object_detector = OBJ_DETECTION('weights/yolov5s.pt', Object_classes)
 DISPLAY_LOCATION = str(config['DEFAULT']['org_name']) 
 COLS_DETECT_INFO = ['name', 'confidence', 'image', 'location', 'year', 'month', 'date', 'time', 'timestamp']
 
