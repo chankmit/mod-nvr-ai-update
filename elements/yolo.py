@@ -8,7 +8,15 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class OBJ_DETECTION():
     def __init__(self, model_path, classes):
-        self.classes = classes
+        self.classes = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
+                'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
+                'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',
+                'skis', 'snowboard', 'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard',
+                'tennis racket', 'bottle', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana', 'apple',
+                'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch',
+                'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone',
+                'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors', 'teddy bear',
+                'hair drier', 'toothbrush' ]
         self.yolo_model = attempt_load(weights=model_path, map_location=device)
         self.input_width = 320
 
@@ -25,7 +33,7 @@ class OBJ_DETECTION():
             img = img.unsqueeze(0)
 
         pred = self.yolo_model(img, augment=False)[0]
-        pred = non_max_suppression(pred, conf_thres=0.25, iou_thres=0.45, classes=None)
+        pred = non_max_suppression(pred, conf_thres=0.50, iou_thres=0.50, classes=None)
         items = []
         
         if pred[0] is not None and len(pred):
